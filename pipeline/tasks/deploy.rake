@@ -1,7 +1,7 @@
 desc 'Deploy Debezium Connect ELB'
 task :'deploy:elb' do
   puts 'deploy elb cloudformation template'
-  stack_name = 'KSQL-ELB'
+  stack_name = 'DEBEZIUM-ELB'
 
   public_subnets = get_subnets('public')
   public_sg = @keystore.retrieve('PUBLIC_SECURITY_GROUP')
