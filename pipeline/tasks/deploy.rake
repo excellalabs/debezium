@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 desc 'Deploy Debezium Connect ELB'
 task :'deploy:elb' do
   puts 'deploy elb cloudformation template'
@@ -21,3 +22,38 @@ task :'deploy:elb' do
   )
   puts 'done!'
 end
+
+desc 'Deploy Debezium Connect ECS'
+task :'deploy:ecs' do
+  puts 'deploy ecs cloudformation template'
+  stack_name = 'DEBEZIUM-ECS'
+  service_name = 'debezium-connect'
+  private_subnets = get_subnets('private')
+  private_sg = @keystore.retrieve('PRIVATE_SECURITY_GROUP')
+  target_group = \
+    @cloudformation.stack_output('DEBEZIUM-ELB', 'TargetGroup')
+  kafka_url = @keystore.retrieve('KAFKA_BOOTSTRAP_SERVERS')
+  image_name = 'debezium/connect:0.8'
+  ecs_cluster = 'EX-INTERNAL-ECS-CLUSTER'
+
+  parameters = {
+    'Cluster' => ecs_cluster,
+    'ServiceName' => service_name,
+    'VPC' => @keystore.retrieve('VPC_ID'),
+    'PrivateSubnetIds' => private_subnets,
+    'EcsSecurityGroup' => private_sg,
+    'TargetGroup' => target_group,
+    'Image' => image_name,
+    'Port' => @port,
+    'KafkaUrl' => kafka_url
+  }
+
+  @cloudformation.deploy_stack(
+    stack_name,
+    parameters,
+    'provisioning/fargate.yml',
+    ['CAPABILITY_NAMED_IAM']
+  )
+  puts 'done!'
+end
+# rubocop:enable Metrics/BlockLength
