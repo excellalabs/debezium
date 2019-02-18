@@ -1,0 +1,16 @@
+version: '2'
+services:
+  connect:
+    build:
+      context: container
+    ports:
+     - 8083:8083
+     - 6001:6001
+    environment:
+     - BOOTSTRAP_SERVERS=localhost:29092
+     - GROUP_ID=1
+     - CONFIG_STORAGE_TOPIC=my_connect_configs
+     - OFFSET_STORAGE_TOPIC=my_connect_offsets
+     - STATUS_STORAGE_TOPIC=my_connect_statuses
+     - KAFKA_OPTS=-javaagent:/kafka/jmx_prometheus_javaagent.jar=7071:/kafka/config.yml
+     - JMX_PORT=6001

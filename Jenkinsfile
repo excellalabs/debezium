@@ -17,6 +17,10 @@ node {
     rake 'rubocop'
   }
 
+  stage('Build') {
+    rake 'build:image'
+  }
+
   stage('Deployment - ELB') {
     rake 'deploy:elb'
   }
