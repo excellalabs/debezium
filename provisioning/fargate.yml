@@ -76,6 +76,7 @@ Resources:
           Image: !Ref Image
           PortMappings:
             - ContainerPort: !Ref Port
+            - ContainerPort: 6001
           Environment:
             - Name: BOOTSTRAP_SERVERS
               Value: !Ref KafkaUrl
@@ -91,6 +92,10 @@ Resources:
               Value: false
             - Name: CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE
               Value: false
+            - Name: KAFKA_OPTS
+              Value: -javaagent:/kafka/jmx_prometheus_javaagent.jar=7071:/kafka/config.yml
+            - Name: JMX_PORT
+              Value: 6001
           # Send logs to CloudWatch Logs
           LogConfiguration:
             LogDriver: awslogs

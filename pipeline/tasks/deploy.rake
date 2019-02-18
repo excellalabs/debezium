@@ -33,7 +33,6 @@ task :'deploy:ecs' do
   target_group = \
     @cloudformation.stack_output('DEBEZIUM-ELB', 'TargetGroup')
   kafka_url = @keystore.retrieve('KAFKA_BOOTSTRAP_SERVERS')
-  image_name = 'debezium/connect:0.8'
   ecs_cluster = 'EX-INTERNAL-ECS-CLUSTER'
 
   parameters = {
@@ -43,7 +42,7 @@ task :'deploy:ecs' do
     'PrivateSubnetIds' => private_subnets,
     'EcsSecurityGroup' => private_sg,
     'TargetGroup' => target_group,
-    'Image' => image_name,
+    'Image' => @docker_image,
     'Port' => @port,
     'KafkaUrl' => kafka_url
   }
