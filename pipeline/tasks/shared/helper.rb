@@ -1,5 +1,6 @@
 @cloudformation = MinimalPipeline::Cloudformation.new
 @keystore = MinimalPipeline::Keystore.new
+@docker = MinimalPipeline::Docker.new
 
 @port = '8083'
 
