@@ -73,6 +73,7 @@ Resources:
       TaskRoleArn: !Ref TaskRole
       ContainerDefinitions:
         - Name: !Ref ServiceName
+          HostName: !Ref ServiceName
           Image: !Ref Image
           PortMappings:
             - ContainerPort: !Ref Port

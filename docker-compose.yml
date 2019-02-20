@@ -3,6 +3,7 @@ services:
   connect:
     build:
       context: container
+    hostname: debezium-connect
     ports:
      - 8083:8083
      - 6001:6001
