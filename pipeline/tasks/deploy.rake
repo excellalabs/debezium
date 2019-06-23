@@ -40,7 +40,7 @@ task :'deploy:ecs' do
     'VPC' => @keystore.retrieve('VPC_ID'),
     'PrivateSubnetIds' => private_subnets,
     'EcsSecurityGroup' => private_sg,
-    'TargetGroup' => target_group,
+    # 'TargetGroup' => target_group,
     'Image' => @docker_image,
     'Port' => @port,
     'KafkaUrl' => kafka_url
