@@ -5,7 +5,7 @@
 @port = '8083'
 
 docker_repo = @keystore.retrieve('ECR_REPOSITORY')
-@docker_image = "#{docker_repo}/debezium-connector:latest"
+@docker_image = "#{docker_repo}/xsp-debezium:latest"
 
 def get_subnets(subnet_cluster)
   subnet_cluster.upcase!

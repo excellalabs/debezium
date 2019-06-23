@@ -26,14 +26,14 @@ end
 desc 'Deploy Debezium Connect ECS'
 task :'deploy:ecs' do
   puts 'deploy ecs cloudformation template'
-  stack_name = 'DEBEZIUM-ECS'
+  stack_name = 'XSP-DEBEZIUM-ECS'
   service_name = 'debezium-connect'
   private_subnets = get_subnets('private')
   private_sg = @keystore.retrieve('PRIVATE_SECURITY_GROUP')
-  target_group = \
-    @cloudformation.stack_output('DEBEZIUM-ELB', 'TargetGroup')
+  # target_group = \
+  #   @cloudformation.stack_output('DEBEZIUM-ELB', 'TargetGroup')
   kafka_url = @keystore.retrieve('KAFKA_BOOTSTRAP_SERVERS')
-  ecs_cluster = 'EX-INTERNAL-ECS-CLUSTER'
+  ecs_cluster = @keystore.retrieve('INTERNAL_ECS_CLUSTER')
 
   parameters = {
     'Cluster' => ecs_cluster,
