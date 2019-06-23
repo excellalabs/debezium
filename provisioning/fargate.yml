@@ -159,7 +159,8 @@ Resources:
         MaximumPercent: 200
       DesiredCount: 1
       # This may need to be adjusted if the container takes a while to start up
-      HealthCheckGracePeriodSeconds: 30
+      # only valid when there is a loadbalancer
+      # HealthCheckGracePeriodSeconds: 30
       LaunchType: FARGATE
       NetworkConfiguration: 
         AwsvpcConfiguration:
