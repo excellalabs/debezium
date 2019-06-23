@@ -89,13 +89,13 @@ Resources:
             - Name: BOOTSTRAP_SERVERS
               Value: !Ref KafkaUrl
             - Name: CONFIG_STORAGE_TOPIC
-              Value: 'connect_configs'
+              Value: 'debezium_connect_configs'
             - Name: GROUP_ID
               Value: 1
             - Name: OFFSET_STORAGE_TOPIC
-              Value: 'connect_offsets'
+              Value: 'debezium_connect_offsets'
             - Name: STATUS_STORAGE_TOPIC
-              Value: 'connect_statuses'
+              Value: 'debezium_connect_statuses'
             - Name: CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE
               Value: false
             - Name: CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE
@@ -203,3 +203,5 @@ Resources:
 Outputs:
   DebeziumService:
     Value: !Ref 'Service'
+  IpAddress:
+    Value: { "Fn::GetAtt" : [ !Ref 'TaskDefinition', "PrivateIp" ] }
