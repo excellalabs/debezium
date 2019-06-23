@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/BlockLength
 desc 'Deploy Debezium Connect ELB'
 task :'deploy:elb' do
   puts 'deploy elb cloudformation template'
@@ -55,4 +54,3 @@ task :'deploy:ecs' do
   )
   puts 'done!'
 end
-# rubocop:enable Metrics/BlockLength
