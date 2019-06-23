@@ -203,5 +203,3 @@ Resources:
 Outputs:
   DebeziumService:
     Value: !Ref 'Service'
-  IpAddress:
-    Value: { "Fn::GetAtt" : [ !Ref 'TaskDefinition', "PrivateIp" ] }
