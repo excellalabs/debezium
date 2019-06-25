@@ -4,7 +4,7 @@ task :'build:image' do
 
   # authentication
   system('$(aws ecr get-login --no-include-email --region us-east-1)')
-  # build the ecr repo if not exists
+  # create the ecr repo if not exists
   system("ws ecr describe-repositories --region us-east-1 \
     --repository-names #{@ecr_repo_name} || \
     aws ecr create-repository --region us-east-1 \
