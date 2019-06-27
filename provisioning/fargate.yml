@@ -115,9 +115,8 @@ Resources:
               awslogs-group: !Ref LogGroup
               awslogs-stream-prefix: ecs
       Tags:
-        - Tag:
-            Key: Name
-            Value: !Ref ServiceName
+        - Key: Name
+          Value: !Ref ServiceName
 
   # A role needed by ECS
   ExecutionRole:
@@ -182,9 +181,8 @@ Resources:
       #     ContainerPort: !Ref Port
       #     TargetGroupArn: !Ref TargetGroup
       Tags:
-        - Tag:
-            Key: Name
-            Value: !Ref ServiceName
+        - Key: Name
+          Value: !Ref ServiceName
   LogGroup:
     Type: AWS::Logs::LogGroup
     Properties:
