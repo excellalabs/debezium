@@ -2,6 +2,7 @@
 
 source 'https://rubygems.org'
 
+gem 'aws-sdk-ecs'
 gem 'keystore'
 gem 'minimal_pipeline'
 gem 'rake'

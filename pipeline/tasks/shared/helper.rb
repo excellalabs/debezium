@@ -2,11 +2,14 @@
 @keystore = MinimalPipeline::Keystore.new
 @docker = MinimalPipeline::Docker.new
 
-@port = '8083'
+@region = 'us-east-1'
+ENV['region'] = @region
 
 docker_repo = @keystore.retrieve('ECR_REPOSITORY')
 @ecr_repo_name = 'xsp-debezium'
 @docker_image = "#{docker_repo}/#{@ecr_repo_name}:latest"
+@service_name = 'debezium-connect'
+@port = '8083'
 
 def get_subnets(subnet_cluster)
   subnet_cluster.upcase!
