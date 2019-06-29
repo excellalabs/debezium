@@ -28,6 +28,10 @@ node {
   stage('Deployment - ECS') {
     rake 'deploy:ecs'
   }
+
+  stage('Create Debezium Connector') {
+    rake 'debezium:setup'
+  }
 }
 
 // Helper function for rake and rvm
